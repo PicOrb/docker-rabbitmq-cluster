@@ -14,3 +14,13 @@ RUN yum install -y  http://www.rabbitmq.com/releases/rabbitmq-server/v3.5.0/rabb
 RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_mqtt rabbitmq_stomp rabbitmq_management  rabbitmq_management_agent rabbitmq_management_visualiser rabbitmq_federation rabbitmq_federation_management sockjs
 
 #CMD /usr/sbin/rabbitmq-server
+
+ADD erlang.cookie /var/lib/rabbitmq/.erlang.cookie
+
+RUN chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
+
+RUN chmod 400 /var/lib/rabbitmq/.erlang.cookie
+
+
+
+
