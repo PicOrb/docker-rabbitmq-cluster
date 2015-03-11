@@ -1,5 +1,9 @@
-FROM bijukunjummen/rabbitmq-base
+FROM picorb/rabbitmq-base
 MAINTAINER Biju Kunjummen biju.kunjummen@gmail.com
+
+ADD rabbitmq.config /etc/rabbitmq/
+
+RUN chmod u+rw /etc/rabbitmq/rabbitmq.config
 
 RUN mkdir /opt/rabbit
 
