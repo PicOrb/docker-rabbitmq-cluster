@@ -21,6 +21,10 @@ RUN chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
 
 RUN chmod 400 /var/lib/rabbitmq/.erlang.cookie
 
-
-
-
+# RabbitMQ
+RUN git clone git://github.com/joemiller/joemiller.me-intro-to-sensu.git
+RUN cd joemiller.me-intro-to-sensu/; ./ssl_certs.sh clean && ./ssl_certs.sh generate
+RUN mkdir /etc/rabbitmq/ssl
+RUN cp /joemiller.me-intro-to-sensu/server_cert.pem /etc/rabbitmq/ssl/cert.pem
+RUN cp /joemiller.me-intro-to-sensu/server_key.pem /etc/rabbitmq/ssl/key.pem
+RUN cp /joemiller.me-intro-to-sensu/testca/cacert.pem /etc/rabbitmq/ssl/
