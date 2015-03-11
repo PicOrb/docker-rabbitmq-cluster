@@ -1,0 +1,3 @@
+[submodule "sensu-server"]
+	path = sensu-server
+	url = git@github.com:PicOrb/docker-sensu-server.git

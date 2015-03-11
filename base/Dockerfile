@@ -3,7 +3,7 @@ MAINTAINER Biju Kunjummen biju.kunjummen@gmail.com
 
 RUN yum install -y wget unzip tar 
 
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm
+RUN rpm -Uvh ftp://195.220.108.108/linux/centos/7.0.1406/extras/x86_64/Packages/epel-release-7-2.noarch.rpm
 
 RUN yum install -y erlang
 
@@ -28,3 +28,5 @@ RUN mkdir /etc/rabbitmq/ssl
 RUN cp /joemiller.me-intro-to-sensu/server_cert.pem /etc/rabbitmq/ssl/cert.pem
 RUN cp /joemiller.me-intro-to-sensu/server_key.pem /etc/rabbitmq/ssl/key.pem
 RUN cp /joemiller.me-intro-to-sensu/testca/cacert.pem /etc/rabbitmq/ssl/
+ADD ./files/rabbitmq.config /etc/rabbitmq/
+RUN chmod u+rw /etc/rabbitmq/rabbitmq.config
