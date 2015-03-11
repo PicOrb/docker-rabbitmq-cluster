@@ -1,16 +1,6 @@
 FROM bijukunjummen/rabbitmq-base
 MAINTAINER Biju Kunjummen biju.kunjummen@gmail.com
 
-ADD rabbitmq.config /etc/rabbitmq/
-
-RUN chmod u+rw /etc/rabbitmq/rabbitmq.config
-
-ADD erlang.cookie /var/lib/rabbitmq/.erlang.cookie
-
-RUN chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie
-
-RUN chmod 400 /var/lib/rabbitmq/.erlang.cookie
-
 RUN mkdir /opt/rabbit
 
 ADD startrabbit.sh /opt/rabbit/
