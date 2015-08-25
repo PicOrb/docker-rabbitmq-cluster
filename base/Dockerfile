@@ -2,6 +2,14 @@ FROM centos:centos6
 MAINTAINER Biju Kunjummen biju.kunjummen@gmail.com
 
 RUN yum install -y wget unzip tar git openssl
+RUN yum groupinstall -y development && \
+    yum install -y \
+    bzip2-devel \
+    hostname \
+    openssl-devel \
+    sqlite-devel \
+    sudo \
+    zlib-dev
 
 RUN rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 
