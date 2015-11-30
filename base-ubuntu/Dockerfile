@@ -4,10 +4,12 @@ MAINTAINER Biju Kunjummen biju.kunjummen@gmail.com
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
-RUN apt-get update && apt-get install -y wget unzip tar git openssl
-
+RUN echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
+RUN curl http://www.rabbitmq.com/rabbitmq-signing-key-public.asc | sudo apt-key add -
 RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /etc/apt/sources.list
 RUN wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc && apt-key add erlang_solutions.asc
+
+RUN apt-get update && apt-get install -y wget unzip tar git openssl
 
 #Dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y default-jdk build-essential libncurses5-dev openssl libssl-dev fop xsltproc unixodbc-dev
@@ -43,6 +45,7 @@ RUN cp /joemiller.me-intro-to-sensu/server_cert.pem /etc/rabbitmq/ssl/cert.pem
 RUN cp /joemiller.me-intro-to-sensu/server_key.pem /etc/rabbitmq/ssl/key.pem
 RUN cp /joemiller.me-intro-to-sensu/testca/cacert.pem /etc/rabbitmq/ssl/
 ADD ./rabbitmq.config /etc/rabbitmq/
+ADD ./rabbitmq-server /etc/default/rabbitmq-server
 RUN chmod u+rw /etc/rabbitmq/rabbitmq.config
 
 RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_mqtt rabbitmq_stomp rabbitmq_management rabbitmq_management_agent rabbitmq_management_visualiser rabbitmq_federation rabbitmq_federation_management sockjs
