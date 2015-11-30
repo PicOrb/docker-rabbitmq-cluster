@@ -7,7 +7,7 @@ CMD ["/sbin/my_init"]
 RUN echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
 RUN curl http://www.rabbitmq.com/rabbitmq-signing-key-public.asc | sudo apt-key add -
 RUN echo "deb http://packages.erlang-solutions.com/ubuntu trusty contrib" >> /etc/apt/sources.list
-RUN wget http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc && apt-key add erlang_solutions.asc
+RUN curl http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | apt-key add -
 
 RUN apt-get update && apt-get install -y wget unzip tar git openssl
 
